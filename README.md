@@ -1,6 +1,6 @@
-# 🛡️ Site-to-Site VPN Project (GNS3)
+# 🛡️ Site-to-Site VPN Project (GNS3 + VirtualBox)
 
-This project demonstrates a secure **Site-to-Site VPN** implementation between two remote offices using **IPSec VPN** in GNS3. Additionally, a **PPTP VPN** connection is configured between internal Windows machines, with an optional attacker (Kali Linux) placed in the ISP segment to simulate failed attacks due to encryption.
+This project demonstrates a secure **Site-to-Site VPN** setup between two remote offices using **IPSec VPN** in **GNS3**, with an internal **PPTP VPN** between Windows VMs. The simulation provides a practical view of encrypted inter-office communication and VPN tunneling.
 
 ---
 
@@ -17,7 +17,6 @@ This project demonstrates a secure **Site-to-Site VPN** implementation between t
 | VPN Type      | IPSec Site-to-Site (R2 ↔ R3)        |
 | Internal VPN  | PPTP VPN (Win1 ↔ Win2)              |
 | Routing       | Static routes used on routers       |
-| Security Test | Kali attacker connected to R1 fails due to encryption |
 | Simulation    | Built in GNS3 + VirtualBox          |
 
 ---
@@ -26,11 +25,10 @@ This project demonstrates a secure **Site-to-Site VPN** implementation between t
 
 - [GNS3](https://www.gns3.com/)
 - [VirtualBox](https://www.virtualbox.org/)
-- Windows Server & Windows Client
-- Kali Linux
-- Cisco Routers (R1, R2, R3)
-- VPCS for test endpoints
-- PPTP & IPSec Protocols
+- Cisco Routers (IOS image: `c3725`)
+- Windows Server and Windows Client (VirtualBox VMs)
+- VPCS for endpoint testing
+- VPN Protocols: IPSec & PPTP
 
 ---
 
@@ -47,11 +45,33 @@ This project demonstrates a secure **Site-to-Site VPN** implementation between t
 
 ## 🔐 Security Demonstration
 
-- **IPSec VPN** ensures that only encrypted traffic passes through the public network (ISP via R1).
-- **Kali Attacker** connected to R1 attempts packet sniffing and MITM attacks using Wireshark, Ettercap, etc.
-- Results:
-  - Traffic between Win1 and Win2 remains encrypted and unreadable.
-  - Attacker cannot view credentials or interfere with communication.
+- **IPSec VPN** ensures encrypted traffic through the public ISP (via Router R1).
+- **PPTP VPN** provides internal encryption between Windows VMs across offices.
+- A simulated **attacker (Kali Linux)** fails to intercept or break into the tunnel due to secure VPN setup.
+
+---
+
+## 📦 Download Virtual Machines
+
+Download the Windows VMs (exported as `.ova` files) from the links below:
+
+- 🖥️ **Windows Server VM (win-server.ova)**  
+  [Download from Google Drive](https://drive.google.com/file/d/1scphRw3jhOG8Hz0JDiGi6zV0Jk_Go3RK/view?usp=drive_link)
+
+- 🖥️ **Windows Client VM (win-client.ova)**  
+  [Download from Google Drive](https://drive.google.com/file/d/1JhZDhkhOj01j-EgPpTcMPj6zKIK_6tf1/view?usp=drive_link)
+
+> ⚠️ These files are large (~4 GB each). Make sure to extract or import them before running the project.
+
+---
+
+## 💻 How to Import OVA Files (VirtualBox)
+
+1. Open **VirtualBox**
+2. Go to `File` → `Import Appliance`
+3. Browse and select the downloaded `.ova` file
+4. Click **Next**, then **Finish**
+5. Repeat for both Win1 and Win2 VMs
 
 ---
 
@@ -60,3 +80,4 @@ This project demonstrates a secure **Site-to-Site VPN** implementation between t
 1. **Clone this repository**:
    ```bash
    git clone https://github.com/jatin-rajputt/site-to-site-vpn.git
+   cd site-to-site-vpn
