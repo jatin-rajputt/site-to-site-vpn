@@ -1,0 +1,1 @@
+Aug 03 18:14:34.809 VM: trying to shutdown an inactive VM.

@@ -1,0 +1,2 @@
+Aug 03 18:15:49.935 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Aug 03 18:15:49.935 HYPERVISOR: Started on IP = localhost, TCP port = 51673.
